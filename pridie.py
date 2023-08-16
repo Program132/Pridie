@@ -21,10 +21,10 @@ def main():
     while waitingEnd:
         num = input("0 - Exit\n1 - Little Network Scanner\n2 - Large Network Scanner\n3 - Silent Little Network Scanner\n4 - Silent Large Network Scanner\n Please enter a number: ")
 
-        if num == 0 or num == "0":
+        if num == "0":
             print("Good bye")
             waitingEnd = False
-        elif num == 1 or num == "1":
+        elif num == "1":
             nmap_little()
         else:
             print("Wrong number!")
@@ -37,7 +37,8 @@ def nmap_little():
     print("**** Welcome to Little Network Scanner ****")
     ip = get_ip()
     nm.scan(ip, '1-443')
-    open_ports = nm['scan'][ip]['tcp'].keys()
+    open_ports = nm[ip]['tcp'].keys()
     print(f"Little Network Scan: \n    - Open Ports: {open_ports}")
 
-main()
+if __name__ == "__main__":
+    main()
