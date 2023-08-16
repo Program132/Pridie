@@ -37,7 +37,7 @@ def nmap_little():
     print("**** Welcome to Little Network Scanner ****")
     ip = get_ip()
     nm.scan(ip, '1-443')
-    print(nm.scanInfo())
+    print(nm.scaninfo())
     print(nm[ip]['tcp'].keys())
 
 main()
