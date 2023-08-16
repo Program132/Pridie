@@ -42,7 +42,11 @@ def NetworkScanner():
         command = "nmap -T3 -F -sV -n -Pn --disable-arp-ping -D RND:5 " + ip
     elif mode == "3":
         command = "nmap -T3 -p- -sV -n -Pn --disable-arp-ping -D RND:5 " + ip
-    print(f"\n Command executed: {command} \n {os.system(command)} \n")
+    print("\n")
+    print(f"Command executed: {command}")
+    print("\n")
+    print(os.system(command))
+    print("\n")
 
 if __name__ == "__main__":
     main()
