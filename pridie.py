@@ -13,8 +13,6 @@ title = """
 
 print(title)
 
-nm = nmap.PortScanner()
-
 def main():
     waitingEnd = True
 
