@@ -31,8 +31,7 @@ def main():
     return
 
 def get_ip():
-    ip = str(input("\nGive me the IP from the target: "))
-    return ip
+    return input("\nGive me the IP from the target: ")
 def nmap_little():
     print("**** Welcome to Little Network Scanner ****")
     ip = get_ip()
