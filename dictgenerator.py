@@ -1,3 +1,6 @@
+import itertools
+
+
 def add_information(listOfInfo):
     info = input("Enter information: ")
     listOfInfo.append(info)
@@ -65,18 +68,31 @@ def mixedListGenerator(currentList):
         '`': "'",
     }
 
-    newList = currentList
-    for item in currentList:
-        mixed_item = ""
+    newList = []
+    for i in range(len(currentList)):
+        item = currentList[i].lower()
+        variations = [item]
+        item_without_spaces = ''.join(item.split())
+        if item_without_spaces != item:
+            variations.append(item_without_spaces)
+
         for char in item:
-            mixed_item += replacements.get(char.lower(), char)
-        newList.append(mixed_item)
+            if char.lower() in replacements:
+                temp_variations = []
+                for variant in variations:
+                    temp_variations.append(variant.replace(char, replacements[char.lower()]))
+                variations.extend(temp_variations)
+        variations.extend([variant.upper() for variant in variations])
+        variations.extend([prev + item for prev in currentList[:i]])
+
+        newList.extend(variations)
+
     return newList
 
 
 def save_and_get_dict(listOfInfo):
     mixedList = mixedListGenerator(listOfInfo)
-    filename = input("Enter the name of the file to save the dictionary: ")
+    filename = input("Enter the name of the file to save the dictionary: ") + ".txt"
     file = open(filename, "w+")
     for i in mixedList:
         file.write(i)
