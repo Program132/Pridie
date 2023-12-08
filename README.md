@@ -8,6 +8,9 @@ and in no case do I encourage people to use my personal tool to achieve dishones
 # Content
 
 - Enumeration with NMAP
+- Generate Personality Dict (specific user)
+- Generate global dict for passwords (coming soon)
+- Generate global dict for dirs in a website (coming soon)
 - Searching dirs in a website
 - Metasploit (coming soon)
 - Bruteforce (coming soon)
