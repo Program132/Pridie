@@ -2,7 +2,9 @@ import os
 import platform
 import NmapFunctions  # custom file for nmap
 import DirsearchFunctions  # custom file for dirseach (or gobuster)
+import Hashs  # custom file for hashs
 import Utils  # utilities
+import dictgenerator
 
 title = """
 ██████╗░██████╗░██╗██████╗░██╗███████╗
@@ -65,16 +67,50 @@ def main():
 
         inputs = str(input("""
 Select an interaction :
-- 1 : Run Passive Information Gathering
-- 2 : Run Enumeration
-- 3 : Run Metasploit
-- 4 : Quit
+- 1 : Hashs
+- 2 : Generate Personality Dict
+- 3 : Run Enumeration
+- 4 : Run Metasploit
+- 5 : Quit
 
 Number: """))
-
         if inputs == "1":
-            print("Running classic information gathering")
+            enumOver = False
+
+            while not enumOver:
+                print("\n")
+
+                enum_input = str(input("""
+    Select an interaction :
+    - 1 : Base64 Encode
+    - 2 : Base64 Decode
+    - 3 : UTF-16 Encode
+    - 4 : MD4 Encode
+    - 5 : NTLM Encode
+    - 6 : Quit
+    Number: """))
+
+                currentString = str(input("Give us the message, text: "))
+
+                if enum_input == "1":
+                    print(Hashs.Base64_Encode(currentString))
+                elif enum_input == "2":
+                    print(Hashs.Base64_Decode(currentString))
+                elif enum_input == "3":
+                    print(Hashs.UTF16_Encode(currentString))
+                elif enum_input == "4":
+                    print(Hashs.MD4_Encode(currentString))
+                elif enum_input == "5":
+                    print(Hashs.NTLM_Encode(currentString))
+                elif enum_input == "6":
+                    enumOver = True
+                else:
+                    print("Wrong action!")
         elif inputs == "2":
+            print("\n")
+            dictgenerator.main()
+            print("\n")
+        elif inputs == "3":
             enumOver = False
 
             while not enumOver:
@@ -90,7 +126,7 @@ Number: """))
 
                 if enum_input == "1":
                     NmapFunctions.basicNmapScan(sc)
-                elif enum_input == "3":
+                elif enum_input == "2":
                     possibleFilePath = str(input("Give the path to the dict: "))
 
                     if Utils.is_valid_file_path(possibleFilePath):
@@ -101,9 +137,9 @@ Number: """))
                     enumOver = True
                 else:
                     print("Wrong action!")
-        elif inputs == "3":
-            print("Running Metasploit")
         elif inputs == "4":
+            print("Running Metasploit")
+        elif inputs == "5":
             over = True
         else:
             print("Wrong action!")
